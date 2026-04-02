@@ -10,12 +10,28 @@ export default createStore({
     storeTodos(state, todos) {
       state.todos = todos
     },
+    storeTodo(state, todo) {
+      state.todos.push(todo)
+    }
   },
   actions: {
     async getTodos({ commit }) {
       return await fetch('http://localhost:3000/todos')
         .then(res => res.json())
         .then(todos => commit('storeTodos', todos))
+        .catch(err => console.error(err))
+    },
+
+    async addTodo({ commit }, todo) {
+      return await fetch('http://localhost:3000/todos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(todo)
+      })
+        .then((res) => res.json())
+        .then((result) => commit('storeTodo', result))
         .catch(err => console.error(err))
     }
   },
