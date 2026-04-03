@@ -16,10 +16,11 @@ stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                             <input
                                 type="text"
                                 placeholder="Digite a sua tarefa"
-                                :value="todo.title"
                                 class="bg-gray-300 placeholder-gray-500 
 text-gray-700 font-light focus:outline-none block w-full appearance-none 
 leading-normal mr-3"
+v-model="todoTitle"
+@keyup.enter="updateTodo"
                             >
                         </div>
 
@@ -50,7 +51,27 @@ justify-center">
 </template>
 
 <script setup>
-    import { defineProps } from 'vue';
+import { defineProps, ref } from 'vue'
+import { useStore } from 'vuex'
 
-    defineProps({todo: Object})
+const store = useStore()
+
+const props = defineProps({
+  todo: Object
+})
+
+const todoTitle = ref(props.todo.title)
+
+
+
+const updateTodo = () => {
+  const payload = {
+    id: props.todo.id,
+    title: todoTitle.value
+  }
+
+  console.log("payload: ", payload)
+
+  store.dispatch('updateTodo', payload)
+}
 </script>

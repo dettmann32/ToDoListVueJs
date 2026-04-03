@@ -2,13 +2,11 @@
   "todos": [
     {
       "id": "1",
-      "title": "Estudar Vue 3",
-      "coompleted": true
+      "title": "Estudar Vue 3"
     },
     {
       "id": "2",
-      "title": "Estudar Vuex",
-      "coompleted": false
+      "title": "Estudar Vuex"
     },
     {
       "id": "3",

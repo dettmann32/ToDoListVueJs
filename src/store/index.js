@@ -33,6 +33,19 @@ export default createStore({
         .then((res) => res.json())
         .then((result) => commit('storeTodo', result))
         .catch(err => console.error(err))
+    },
+     
+    async updateTodo(ctx, todo) {
+      return await fetch(`http://localhost:3000/todos/${todo.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(todo)
+      })
+        .then((res) => res.json())
+        .then((result) => console.log(result))
+        .catch(err => console.error(err))
     }
   },
   modules: {
