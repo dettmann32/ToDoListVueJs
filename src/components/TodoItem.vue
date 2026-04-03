@@ -2,9 +2,12 @@
                 <div class="bg-gray-300 rounded-sm">
                     <div class="flex items-center px-4 py-3 border-b 
 border-gray-400 last:border-b-0">
-                        <div class="flex items-center justify-center 
-mr-2">
-                            <button class="text-gray-400">
+                        <div class="flex items-center justify-center mr-2"> 
+                            <button :class="{
+                            'text-gray-400': !isCompleted,
+                            'text-green-500': isCompleted
+                            }" @click="completedTodo">                   
+
                                 <svg class="w-5 h-5" fill="none" 
 stroke="currentColor" viewBox="0 0 24 24" 
 xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" 
@@ -13,6 +16,7 @@ stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                         </div>
 
                         <div class="w-full">
+
                             <input
                                 type="text"
                                 placeholder="Digite a sua tarefa"
@@ -61,6 +65,7 @@ const props = defineProps({
 })
 
 const todoTitle = ref(props.todo.title)
+const isCompleted = ref(props.todo.completed)
 
 
 
@@ -69,9 +74,24 @@ const updateTodo = () => {
     id: props.todo.id,
     title: todoTitle.value
   }
+  if(!payload.title){
+    return
+  }
 
   console.log("payload: ", payload)
 
   store.dispatch('updateTodo', payload)
+}
+
+const completedTodo = () => {
+  const payload = {
+    id: props.todo.id,
+    title: props.todo.title,
+    completed: !props.todo.completed
+  }
+
+  isCompleted.value = !isCompleted.value
+  store.dispatch('completedTodo', payload)
+
 }
 </script>

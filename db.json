@@ -2,21 +2,23 @@
   "todos": [
     {
       "id": "1",
-      "title": "Estudar Vue 3"
+      "title": "Estudar Vue 3",
+      "completed": true
     },
     {
       "id": "2",
-      "title": "Estudar Vuex"
+      "title": "Estudar Vuex",
+      "completed": false
     },
     {
       "id": "3",
       "title": "Estudar Pinia",
-      "coompleted": false
+      "completed": false
     },
     {
+      "id": "y9jknct8MgE",
       "title": "mais um ",
-      "completed": false,
-      "id": "y9jknct8MgE"
+      "completed": false
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
