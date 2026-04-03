@@ -37,7 +37,7 @@ justify-center">
                                     fill="none"
                                     stroke="currentColor"
                                     xmlns="http://www.w3.org/2000/svg"
-                                >
+                                 @click="deleteTodo"> 
                                     <path
                                         d="M19 7L18.1327 19.1425C18.0579 
 20.1891 17.187 21 16.1378 21H7.86224C6.81296 21 5.94208 20.1891 5.86732 
@@ -92,6 +92,9 @@ const completedTodo = () => {
 
   isCompleted.value = !isCompleted.value
   store.dispatch('completedTodo', payload)
+}
 
+const deleteTodo = () => {
+    store.dispatch('deleteTodo', props.todo.id)
 }
 </script>

@@ -19,6 +19,10 @@ export default createStore({
       if (index !== -1) {
         state.todos[index] = todo
       }
+    },
+
+    deleteTodo(state, id) {
+      state.todos = state.todos.filter(todo => todo.id !== id)
     }
   },
 
@@ -68,6 +72,14 @@ export default createStore({
         .then((res) => res.json())
         .then((result) => console.log(result))
         .then((result) => ctx.commit('completedTodo', result))
+        .catch(err => console.error(err))
+    }, 
+
+    async deleteTodo(ctx, id) {
+      return await fetch(`http://localhost:3000/todos/${id}`, {
+        method: 'DELETE',
+      })
+        .then(() => ctx.commit('deleteTodo', id))
         .catch(err => console.error(err))
     }
   },

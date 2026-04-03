@@ -9,7 +9,7 @@
 
             <TodoItems></TodoItems>
 
-            <TodoEmpty></TodoEmpty>
+            <TodoEmpty v-if="store.state.todos.length === 0"></TodoEmpty>
           </template>
           
         </div>
